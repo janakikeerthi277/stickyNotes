@@ -1,9 +1,11 @@
 import express from 'express';
+import {generateUUID} from './generateUUID'
 
 const app = express();
 const port = 3000;
 app.get('/', (req, res) => {
-  res.send('Hi Sou/JK, we are up. Up is up is afa Please start you work');
+  let uuid:string = generateUUID();
+  res.send(uuid);
 });
 app.listen(port,  () => {
   return console.log(`server is listening on ${port}`);
