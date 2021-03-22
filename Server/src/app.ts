@@ -1,10 +1,12 @@
 import express from 'express';
 import {router} from './routes/api'
 import mongoose from 'mongoose'
+import bodyParser = require('body-parser')
 
 const app = express();
 const port = 3000;
 
+//go to mongo create the stickynotes database
 mongoose.connect('mongodb://127.0.0.1:27017/stickyNotes',{
   useCreateIndex : true,
   useNewUrlParser : true,
@@ -37,6 +39,11 @@ mongoose.connect('mongodb://127.0.0.1:27017/stickyNotes',{
 // })
 
 // generate uuid and send the response
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 app.use(router);
 
 

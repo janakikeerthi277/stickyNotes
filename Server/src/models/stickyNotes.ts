@@ -8,8 +8,8 @@ interface INotes{
     notes?: {header:string,body:string}[]
 }
 
-interface todoModelInterface extends mongoose.Model<any> {
-    build(attr:INotes):NotesDoc
+interface todoModelInterface extends mongoose.Model<NotesDoc> {
+    build(attr:INotes):NotesDoc;
 }
 
 interface NotesDoc extends mongoose.Document {
