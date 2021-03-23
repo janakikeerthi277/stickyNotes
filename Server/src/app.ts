@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose'
-import * as noteController from './routes/api'
+import * as noteController from './controller/api'
 
 const app = express();
 const port = 3000;
@@ -15,14 +15,21 @@ mongoose.connect('mongodb://127.0.0.1:27017/stickyNotes',{
 })
 
 app.use(express.json())
+
+//reveing all the created links
+//Notes: only for testing purpose
 app.get("/alllinks", noteController.allNotes);
 
+//retrieve each link
 app.get("/notes/:id", noteController.oneNote);
 
-app.post("/notes", noteController.addNotes);
+// app.post("/notes", noteController.addNotes);
 
+//updating the link
 app.put("/updatenotes/:id", noteController.updateNotes);
 
+
+//deleting the link
 app.delete("/deletenotes/:id", noteController.deleteNotes);
 
 
