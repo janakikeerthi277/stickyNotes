@@ -1,7 +1,6 @@
 import express from 'express';
-import {router} from './routes/api'
 import mongoose from 'mongoose'
-import bodyParser = require('body-parser')
+import * as noteController from './routes/api'
 
 const app = express();
 const port = 3000;
@@ -15,40 +14,18 @@ mongoose.connect('mongodb://127.0.0.1:27017/stickyNotes',{
   console.log('connected to database')
 })
 
-// ( async ()=>{
+app.use(express.json())
+app.get("/alllinks", noteController.allNotes);
 
-//   try {
-//   await mongoose.connect('mongodb://127.0.0.1:27017/stickyNotes', { 
-//     useNewUrlParser: true,
-//     useCreateIndex : true,
-//     useUnifiedTopology : true
-//   }).then(
-//     ()=>{
-//       console.log("Connected to database")
-//     }
-//   );
-// } catch (error) {
-//   console.log('Error in db connection')
-// }
+app.get("/notes/:id", noteController.oneNote);
 
-// });
+app.post("/notes", noteController.addNotes);
 
-// const connection = mongoose.connection;
-// connection.once("open",function(){
-//   console.log("mongoDB database connection established successfully")
-// })
+app.put("/updatenotes/:id", noteController.updateNotes);
 
-// generate uuid and send the response
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
-app.use(bodyParser.json())
-app.use(router);
+app.delete("/deletenotes/:id", noteController.deleteNotes);
 
 
-
-//update the database with the stickynotes detail
 
 
 

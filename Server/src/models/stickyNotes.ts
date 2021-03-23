@@ -2,25 +2,15 @@ import mongoose from 'mongoose';
 
 
 
-interface INotes{
+export interface INotes extends mongoose.Document{
     uuid: string,
-    email?: string,
+    email?:string,
     notes?: {header:string,body:string}[]
 }
 
-interface todoModelInterface extends mongoose.Model<NotesDoc> {
-    build(attr:INotes):NotesDoc;
-}
-
-interface NotesDoc extends mongoose.Document {
-    uuid: string,
-    email?: string,
-    notes?: {header:string,body:string}[]
-}
-
-const notesSchema  = new mongoose.Schema({
-    uuid:{
-        type:String,
+export const NoteSchema = new mongoose.Schema({
+        uuid:{
+        type : String,
         unique: true,
         required: true
     },
@@ -28,29 +18,14 @@ const notesSchema  = new mongoose.Schema({
         type:String,
     },
     notes:[{header:String, body:String}]
-
 })
 
+const Notes = mongoose.model<INotes>("Notes",NoteSchema);
 
-notesSchema.statics.build = (attr:INotes)=>{
-    return new Notes(attr);
-}
-const Notes = mongoose.model<any,todoModelInterface>('Notes',notesSchema);
+export default Notes;
 
-// Notes.build({
-//     uuid : "asfnasgnas",
-//     email:"janaki@gmail.com",
-//     notes: [
-//         {
-//             header : "Hello World",
-//             body : "hi my name is janaki"
-//         },
-//         {
-//             header : "Hello ",
-//             body : "hi testing two"
-//         }
-//     ]
-// })
 
-export {Notes};
+
+
+
 
