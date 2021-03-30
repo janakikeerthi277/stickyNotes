@@ -7,15 +7,7 @@ import NoteScreen from './screens/NoteScreen'
 function App() {
   return (
     <Router>
-  {/*just a button to navigate to second UI
-        <main>
-        <Switch>
-        <Route exact path="/" component={}/>
-        <Route exact path="/:url" component={}/>
-
-        </switch>
-        </main>
-    }*/}
+  
 
     <main>
         <Switch>
