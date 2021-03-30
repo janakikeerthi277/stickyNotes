@@ -1,2 +1,0 @@
-# stickyNotes
-Sticky Notes
