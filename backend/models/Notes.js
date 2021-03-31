@@ -10,18 +10,10 @@ const notesSchema = new mongoose.Schema({
         type:String
  //       required:true
     },
-    notes:[
-        {
-            head:
-            {
-                type:String
-            },
-            body:
-            {
-                type:String
-            }
-        }
-    ]
+    notes:{
+        type:Array
+    }
+    
 });
 
 const Notes = mongoose.model('stickyNotes',notesSchema);
