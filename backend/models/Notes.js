@@ -10,9 +10,14 @@ const notesSchema = new mongoose.Schema({
         type:String
  //       required:true
     },
-    notes:{
-        type:Array
-    }
+    notes:[{
+        uuid:{
+            type:String
+        },
+        body:{
+            type:String
+        }
+    }]
     
 });
 
