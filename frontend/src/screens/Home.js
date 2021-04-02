@@ -9,6 +9,7 @@ import axios from 'axios'
 const Home = (props) => {
    // 
     const [UUID,setUUID] = useState('')
+    const [flag,setFlag] = useState(false)
     const generateUUID = (event)=>{
             event.preventDefault();
             axios.post('http://localhost:5000/api/notes/generateuuid')
@@ -29,7 +30,20 @@ const Home = (props) => {
    
     }
 
-
+    const checkurl = () => {
+        console.log(UUID);
+        axios.get(`http://localhost:5000/api/notes/findurl/${UUID}`)
+        .then(res=>{
+            console.log(res.data);
+             if(Object.keys(res.data).length === 0)
+             {
+                setFlag(true)
+             }
+             else
+             {
+               setFlag(false);
+             }
+         })
 
 
     return (
@@ -48,8 +62,8 @@ const Home = (props) => {
                 <button className="btn purple" onClick ={generateUUID}>generate uuid</button>
                 <input onChange = {event =>setUUID(event.target.value)} placeholder="url"/>
                 
-                <button className="btn green">check</button>
-                <button className="btn gray"onClick={redirect}>Create</button>
+                <button className="btn green" onClick={checkurl}>check</button>
+                <button style={flag?{}:{display:'none'}}className="btn gray"onClick={redirect}>Create</button>
                 <br/>
                 <h2>Your links:</h2>
                 <h2> {`http://localhost/`+UUID}</h2>
