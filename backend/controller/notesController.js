@@ -86,11 +86,37 @@ const deleteNote = async(req,res) => {
       )
 }
 
+// const addNotesParent = async(req,res) => {
+//   const newNote = new Note({
+//     url : "abc"
+//   });
+//   newNote.save().then(
+//     () => {
+//       res.status(201).json({
+//         message: "New link created successfully"
+//       });
+//     }
+//   ).catch(
+//     (error) => {
+//       res.status(400).json({
+//         error: error
+//       })
+//     }
+//   )
+// }
+
+const findUrl = async(req,res) => {
+  const url = await Note.findOne({url : req.params.url});
+  console.log(url);
+  res.send(url);
+}
+
 
 module.exports ={
     getAllProducts,
     getProductsById,
     createNewUUID,
     addNote,
-    deleteNote
+    deleteNote,
+    findUrl
 }
