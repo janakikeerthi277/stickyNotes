@@ -47,7 +47,15 @@ const Note = () => {
 
   const [notesState, dispatch] = useReducer(notesReducer, initialNotesState);
 
+  const [query, setQuery] = useState('');
 
+  const searchQuery = (event) =>{
+    event.preventDefault();
+    // console.log(notesState.notes);
+    const test = notesState.notes.filter( note => note.text.toUpperCase().includes(query.toUpperCase()));
+    console.log(test);
+    
+  }
   const addNote = (event) => {
     event.preventDefault();
 
@@ -89,6 +97,9 @@ const Note = () => {
       {/* header */}
 
       {/*body */}
+      <form onSubmit={searchQuery}>
+        <input type='text' value={query} onChange={event => setQuery(event.target.value)} placeholder='search....' ></input>
+      </form>
 
       <form onSubmit={addNote} className="note-form">
         <textarea
