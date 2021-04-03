@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {getAllProducts,getProductsById,createNewUUID,addNote,deleteNote,findUrl} = require('../controller/notesController')
+const {getAllProducts,getProductsById,createNewUUID,addNote,deleteNote,findUrl,getNote} = require('../controller/notesController')
 
 //@desc get all notes 
 //@route /api/notes
@@ -15,8 +15,8 @@ router.get('/findurl/:url',findUrl);
 router.get('/:id',getProductsById);
 
 router.post('/generateuuid',createNewUUID);
-
-router.patch('/addnote/:id',addNote);
+router.get('/getnote/:url/:uuid',getNote);
+router.patch('/addnote/:url',addNote);
 
 router.patch('/deletenote/:id1/:id2', deleteNote);
 

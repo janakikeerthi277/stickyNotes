@@ -45,8 +45,8 @@ const createNewUUID = async(req,res) =>{
 
 const addNote = async(req,res) => {
     await Note.findOneAndUpdate(
-        {_id: req.params.id} ,
-        {$push : {notes : req.body}},
+        {url: req.params.url} ,
+        {$push : {notes : req.body.notes}},
         { new : true },
       ).then(
         () => {
@@ -111,12 +111,17 @@ const findUrl = async(req,res) => {
   res.send(url);
 }
 
-
+const getNote = async(req,res) => {
+  const note = await Note.findOne({url: req.params.url},{uuid : req.params.uuid})
+  console.log(note);
+  res.send(note);
+}
 module.exports ={
     getAllProducts,
     getProductsById,
     createNewUUID,
     addNote,
     deleteNote,
-    findUrl
+    findUrl,
+    getNote
 }

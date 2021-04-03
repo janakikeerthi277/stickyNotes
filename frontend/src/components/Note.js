@@ -1,6 +1,7 @@
 import './Note.css'
 import {useState,useReducer} from 'react';
 import {v4 as uuid} from 'uuid';
+import axios from 'axios';
 const initialNotesState = {
   lastNoteCreated: null,
   totalNotes:0,
@@ -16,6 +17,23 @@ const notesReducer = (prevState,action) =>{
         notes: [...prevState.notes,action.payload]
       };
       console.log('After add note',newState);
+      // axios.get(`http://localhost:5000/api/notes/getnote${window.location.pathname}/${newState.notes[newState.notes.length-1].id}`
+      //           ).then(res=>{
+      //             console.log(res.data)
+      //             console.log(Object.keys(res.data).length)
+      //             if(Object.keys(res.data).length === 0)
+      //             {
+      //               console.log("only once")
+                    // axios.patch(`http://localhost:5000/api/notes/addnote${window.location.pathname}`,
+                    // {
+                    //     notes : [{uuid: newState.notes[newState.notes.length-1].id,
+                    //           body: newState.notes[newState.notes.length-1].text}]
+                    // }).then(res=>{
+                    // console.log(res.data)}
+                    //   )
+              //     }
+              // })
+      
       return newState;
     }
     case 'DELETE_NOTE':{
@@ -50,6 +68,13 @@ const Note = () => {
     };
     setNoteInput('');
     dispatch({type:'ADD_NOTE',payload:newNote});
+    axios.patch(`http://localhost:5000/api/notes/addnote${window.location.pathname}`,
+                    {
+                        notes : [{uuid: newNote.id,
+                              body: newNote.text}]
+                    }).then(res=>{
+                    console.log(res.data)}
+                      )
     // console.log()
     setNoteInput('');
     //console.log(noteInput);
@@ -71,7 +96,7 @@ const Note = () => {
         {/* header */}
 
         {/*body */}
-
+        {console.log(window.location.pathname)}
         <form onSubmit={addNote} className="note-form">
             <textarea 
             onChange = {event =>setNoteInput(event.target.value)}
