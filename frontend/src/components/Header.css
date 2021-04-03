@@ -1,0 +1,30 @@
+.header_logo{
+    background-color: DodgerBlue;
+    height: 10vh;
+    color: white;
+    padding: 2vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-family: cursive;
+    font-size: 3vh;
+}
+
+input {
+    width:40vw;
+     border: none;
+     background: hsl(0, 0%, 93%);
+     border-radius: .25rem;
+     padding: .75rem 1rem;
+     margin-top: 1rem;
+     margin-left: 5rem;
+     flex: 3 1 30ch;
+   
+      font-family: sans-serif;
+       font-weight: 800;
+       font-size: .85em;
+       text-transform: uppercase;
+       position: relative;
+}
+
+.header_links{
+    display: block;
+}

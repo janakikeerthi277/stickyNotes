@@ -12,26 +12,10 @@ const Header = () =>{
 
             {/* Root Actions Button */}
 
-            <ul className="header_links">
-                <li>
-                {/*
-                    <Link to="/cart">
-                    Cart
-                    <span className="cartlogo_badge">0</span>
-                    </Link>
-
-                    <li>
-                    <Link to="/cart">
-                    Cart
-                    <span className="cartlogo_badge">0</span>
-                    </Link>
-                    </li>
-
-
-                */}
-
-                </li>
-            </ul>
+            <div className="header_links">
+                <input placeholder="email"/>
+                <input placeholder="search"/>
+            </div>
 
         </div>
     )
