@@ -15,9 +15,9 @@ router.get('/findurl/:url',findUrl);
 router.get('/:id',getProductsById);
 
 router.post('/generateuuid',createNewUUID);
-router.get('/getnote/:url/:uuid',getNote);
+// router.get('/getnote/:url/:uuid',getNote);
 router.patch('/addnote/:url',addNote);
 
-router.patch('/deletenote/:id1/:id2', deleteNote);
+router.patch('/deletenote/:url/:uuid', deleteNote);
 
 module.exports = router;

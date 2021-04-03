@@ -17,22 +17,14 @@ const notesReducer = (prevState,action) =>{
         notes: [...prevState.notes,action.payload]
       };
       console.log('After add note',newState);
-      // axios.get(`http://localhost:5000/api/notes/getnote${window.location.pathname}/${newState.notes[newState.notes.length-1].id}`
-      //           ).then(res=>{
-      //             console.log(res.data)
-      //             console.log(Object.keys(res.data).length)
-      //             if(Object.keys(res.data).length === 0)
-      //             {
-      //               console.log("only once")
-                    // axios.patch(`http://localhost:5000/api/notes/addnote${window.location.pathname}`,
-                    // {
-                    //     notes : [{uuid: newState.notes[newState.notes.length-1].id,
-                    //           body: newState.notes[newState.notes.length-1].text}]
-                    // }).then(res=>{
-                    // console.log(res.data)}
-                    //   )
-              //     }
-              // })
+
+      // axios.patch(`http://localhost:5000/api/notes/addnote${window.location.pathname}`,
+      // {
+      //     notes : [{uuid: newState.notes[newState.notes.length-1].id,
+      //           body: newState.notes[newState.notes.length-1].text}]
+      // }).then(res=>{
+      // console.log(res.data)}
+      //   )
       
       return newState;
     }
@@ -42,6 +34,11 @@ const notesReducer = (prevState,action) =>{
         totalNotes: prevState.notes.length -1,
         notes: prevState.notes.filter(note => note.id !==action.payload.id)
       };
+        // console.log(note.id)
+         axios.patch(`http://localhost:5000/api/notes/deletenote${window.location.pathname}/${action.payload.id}`
+          ).then(res=>{
+         console.log(res.data)}
+           )
 
       console.log('After delete note', newState);
       return newState;

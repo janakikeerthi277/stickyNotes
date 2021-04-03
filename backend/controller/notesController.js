@@ -65,8 +65,8 @@ const addNote = async(req,res) => {
 
 const deleteNote = async(req,res) => {
     await Note.findOneAndUpdate(
-        { _id: req.params.id1 },
-        { $pull: { notes : { _id: req.params.id2} } },
+        { url: req.params.url },
+        { $pull: { notes : { uuid: req.params.uuid} } },
         { new: true },
         function(err) {
             if (err) { console.log(err) }
