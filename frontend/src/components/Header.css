@@ -15,16 +15,62 @@ input {
      border-radius: .25rem;
      padding: .75rem 1rem;
      margin-top: 1rem;
-     margin-left: 5rem;
+     margin-left: 2rem;
      flex: 3 1 30ch;
    
       font-family: sans-serif;
        font-weight: 800;
-       font-size: .85em;
+       font-size: .75em;
        text-transform: uppercase;
        position: relative;
 }
 
 .header_links{
     display: block;
+}
+
+.btn {
+    /* height:5vh; */
+    padding: 0.5em 0.5em 0.5em;
+    border-radius: 5px;
+    margin: 5px 5px 5px 5px;
+    color: white;
+    background-color: #fbdedb;
+    display: inline-block;
+    background: #e74c3c;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    font-family: sans-serif;
+    font-weight: 800;
+    font-size: .85em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    -webkit-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+    position: relative;
+}
+.btn:hover, .btn:focus {
+    opacity: 0.8;
+}
+.btn:active {
+    -webkit-transform: scale(0.80);
+    -moz-transform: scale(0.80);
+    -ms-transform: scale(0.80);
+    -o-transform: scale(0.80);
+    transform: scale(0.80);
+}
+.btn.block {
+    display: block !important;
+}
+.btn.circular {
+  border-radius: 20em !important;
+}
+
+.gray {
+    color: black;
+    background-color: #d2d2d2;
 }
