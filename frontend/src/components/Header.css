@@ -1,6 +1,6 @@
 .header_logo{
     background-color: DodgerBlue;
-    height: 10vh;
+    height: 13vh;
     color: white;
     padding: 2vh;
     font-family: Arial, Helvetica, sans-serif;
@@ -9,7 +9,7 @@
 }
 
 input {
-    width:40vw;
+     width:30vw;
      border: none;
      background: hsl(0, 0%, 93%);
      border-radius: .25rem;
@@ -17,11 +17,11 @@ input {
      margin-top: 1rem;
      margin-left: 2rem;
      flex: 3 1 30ch;
-   
+
       font-family: sans-serif;
-       font-weight: 800;
-       font-size: .75em;
-       text-transform: uppercase;
+       font-weight: 600;
+       font-size: .85em;
+       text-transform: lowercase;
        position: relative;
 }
 
@@ -29,11 +29,11 @@ input {
     display: block;
 }
 
-.btn {
+.btn-header {
     /* height:5vh; */
     padding: 0.5em 0.5em 0.5em;
     border-radius: 1px;
-    margin: 5px 5px 5px 5px;
+    margin: 15px 10px 3px 10px;
     color: white;
     background-color: #fbdedb;
     display: inline-block;
@@ -43,7 +43,7 @@ input {
     -o-transition: 0.3s;
     transition: 0.3s;
     font-family: sans-serif;
-    font-weight: 800;
+    font-weight: 600;
     font-size: .85em;
     text-transform: uppercase;
     text-align: center;
@@ -52,24 +52,28 @@ input {
     -moz-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
     box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
     position: relative;
+    display: inline-block;
 }
-.btn:hover, .btn:focus {
+.btn-header:hover, .btn:focus {
     opacity: 0.8;
 }
-.btn:active {
+.btn-header:active {
     -webkit-transform: scale(0.80);
     -moz-transform: scale(0.80);
     -ms-transform: scale(0.80);
     -o-transform: scale(0.80);
     transform: scale(0.80);
 }
-.btn.block {
+.btn-header.block {
     display: block !important;
 }
-.btn.circular {
+.btn-header.circular {
   border-radius: 20em !important;
 }
-
+.delete{
+  font-size : 2vh;
+  height: 7vh; 
+}
 /* Colours */
 .red {
     background-color: #d55050;

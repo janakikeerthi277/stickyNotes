@@ -106,6 +106,23 @@ const createUrl = async(req,res) => {
   )
 }
 
+const deleteUrl = async(req,res) => {
+   await Note.deleteOne({url: req.params.url})
+   .then(
+    () => {
+      res.status(200).json({
+        message: "Link deleted successfully"
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      })
+    }
+  )
+}
+
 const findUrl = async(req,res) => {
   const url = await Note.findOne({url : req.params.url});
   console.log(url);
@@ -125,5 +142,6 @@ module.exports ={
     deleteNote,
     findUrl,
     getNote,
-    createUrl
+    createUrl,
+    deleteUrl
 }

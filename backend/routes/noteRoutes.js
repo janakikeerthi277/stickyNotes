@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {getAllProducts,getProductsById,createNewUUID,addNote,deleteNote,findUrl,getNote, createUrl} = require('../controller/notesController')
+const {getAllProducts,getProductsById,createNewUUID,addNote,deleteNote,findUrl,getNote, createUrl,deleteUrl} = require('../controller/notesController')
 
 //@desc get all notes 
 //@route /api/notes
@@ -20,4 +20,5 @@ router.patch('/addnote/:url',addNote);
 
 router.patch('/deletenote/:url/:uuid', deleteNote);
 
+router.delete('/deleteurl/:url',deleteUrl);
 module.exports = router;
