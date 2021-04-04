@@ -27,6 +27,7 @@ const Home = (props) => {
         const path = `/${UUID}`;
        
         props.history.push(path);
+        axios.post(`http://localhost:5000/api/notes/createurl/${UUID}`)
    
     }
 

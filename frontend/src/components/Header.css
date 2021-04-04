@@ -32,7 +32,7 @@ input {
 .btn {
     /* height:5vh; */
     padding: 0.5em 0.5em 0.5em;
-    border-radius: 5px;
+    border-radius: 1px;
     margin: 5px 5px 5px 5px;
     color: white;
     background-color: #fbdedb;
@@ -70,7 +70,38 @@ input {
   border-radius: 20em !important;
 }
 
+/* Colours */
+.red {
+    background-color: #d55050;
+}
+.teal {
+    background-color: #50d5a1;
+}
+.sky {
+    background-color: #6698cb;
+}
+.black {
+    background-color: #5c6166;
+}
 .gray {
     color: black;
     background-color: #d2d2d2;
+}
+.orange {
+    background-color: #e96633;
+}
+.pink {
+    background-color: #cb99c5;
+}
+.green {
+    background-color: #5bbd72;
+}
+.blue {
+    background-color: #7abedf;
+}
+.yellow {
+    background-color: #ecc92b;
+}
+.purple {
+    background-color: #564f8a;
 }

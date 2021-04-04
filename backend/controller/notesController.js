@@ -34,6 +34,7 @@ const getProductsById = async(req,res) =>{
 const createNewUUID = async(req,res) =>{
     try{
         const uuid = uuidv4();
+        console.log(uuid)
         res.json(uuid);
 
     }
@@ -86,24 +87,24 @@ const deleteNote = async(req,res) => {
       )
 }
 
-// const addNotesParent = async(req,res) => {
-//   const newNote = new Note({
-//     url : "abc"
-//   });
-//   newNote.save().then(
-//     () => {
-//       res.status(201).json({
-//         message: "New link created successfully"
-//       });
-//     }
-//   ).catch(
-//     (error) => {
-//       res.status(400).json({
-//         error: error
-//       })
-//     }
-//   )
-// }
+const createUrl = async(req,res) => {
+  const newNote = new Note({
+    url : req.params.url
+  });
+  newNote.save().then(
+    () => {
+      res.status(201).json({
+        message: "New link created successfully"
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      })
+    }
+  )
+}
 
 const findUrl = async(req,res) => {
   const url = await Note.findOne({url : req.params.url});
@@ -123,5 +124,6 @@ module.exports ={
     addNote,
     deleteNote,
     findUrl,
-    getNote
+    getNote,
+    createUrl
 }
