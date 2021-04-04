@@ -15,6 +15,8 @@ router.post('/generateuuid', createNewUUID);
 
 router.get('/checkUUID/:id', isExists);
 
+router.get('/readNote/:id', isExists);
+
 router.patch('/addNote/:id', addNote);
 
 router.delete('/deleteNote/:id1/:id2', deleteNote);
