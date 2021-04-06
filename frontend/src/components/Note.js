@@ -1,5 +1,5 @@
 import './Note.css'
-import { useState, useReducer } from 'react';
+import { useState, useReducer, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios'
 const initialNotesState = {
@@ -8,7 +8,7 @@ const initialNotesState = {
   notes: []
 }
 
-
+const initialFiltered = [] ;
 const notesReducer = (prevState, action) => {
   switch (action.type) {
     case 'ADD_NOTE': {
@@ -42,19 +42,21 @@ const notesReducer = (prevState, action) => {
     }
   }
 }
-const Note = () => {
+const Note = (props) => {
   const [noteInput, setNoteInput] = useState('');
 
   const [notesState, dispatch] = useReducer(notesReducer, initialNotesState);
 
-  const [query, setQuery] = useState('');
+  const [filteredNotes, setFilteredNotes] = useState(initialFiltered);
 
-  const searchQuery = (event) =>{
-    event.preventDefault();
-    // console.log(notesState.notes);
-    const test = notesState.notes.filter( note => note.text.toUpperCase().includes(query.toUpperCase()));
-    console.log(test);
-    
+  const searchQuery = () =>{
+    if(props.searchTerm != '')
+    {const test = notesState.notes.filter( note => note.text.toUpperCase().includes(props.searchTerm.toUpperCase()));
+      setFilteredNotes(test) ;
+    }
+    else {
+      setFilteredNotes(notesState.notes);
+    }  
   }
   const addNote = (event) => {
     event.preventDefault();
@@ -92,15 +94,16 @@ const Note = () => {
     event.stopPropagation();
     event.preventDefault();
   }
+  
+  useEffect(()=>{
+    searchQuery() ; 
+  }, [notesState,props.searchTerm]);
+
   return (
     <div className="main" onDragOver={dragOver}>
       {/* header */}
 
       {/*body */}
-      <form onSubmit={searchQuery}>
-        <input type='text' value={query} onChange={event => setQuery(event.target.value)} placeholder='search....' ></input>
-      </form>
-
       <form onSubmit={addNote} className="note-form">
         <textarea
           onChange={event => setNoteInput(event.target.value)}
@@ -108,8 +111,7 @@ const Note = () => {
         <button>Add Note</button>
       </form>
 
-      {notesState
-        .notes
+      {filteredNotes
         .map(note => (
           <div className="note"
             style={{ transform: `rotate(${note.rotate}deg)` }}

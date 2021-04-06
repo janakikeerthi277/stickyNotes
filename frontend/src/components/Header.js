@@ -6,12 +6,9 @@ const Header = (props) => {
 
     const [query, setQuery] = useState('');
 
-    const searchQuery = (event) =>{
+    const handleSubmit = (event) =>{
       event.preventDefault();
-      // console.log(notesState.notes);
-      const test =props.noteState.notes.filter( note => note.text.toUpperCase().includes(query.toUpperCase()));
-      console.log(test);
-      
+      props.setSearchTerm(query);     
     }
     return (
         <div className="topnav">
@@ -22,7 +19,7 @@ const Header = (props) => {
                 </form>
             </div>
             <div className="search-container">
-                <form onSubmit={searchQuery}>
+                <form onSubmit = {handleSubmit} >
                     <input type='text' value={query} onChange={event => setQuery(event.target.value)} placeholder='search....' ></input>
                 </form>
             </div>

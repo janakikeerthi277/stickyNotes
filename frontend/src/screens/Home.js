@@ -9,7 +9,7 @@ import axios from 'axios'
 const Home = (props) => {
     //
     const [UUID, setUUID] = useState('')
-    const [visibility, setVisibility] = useState(true);
+    const [visibility, setVisibility] = useState(false);
     const generateUUID = (event) => {
         event.preventDefault();
         axios.post('http://localhost:5000/api/notes/generateuuid')
@@ -24,10 +24,14 @@ const Home = (props) => {
     }
 
     const redirect = () => {
-        console.log(props);
-        const path = `/${UUID}`;
+        axios.post(`http://localhost:5000/api/notes/createUrl/${UUID}`)
+        .then(res =>{
+            console.log(res.data);
+            console.log(props);
+            const path = `/${UUID}`;  
+            props.history.push(path);    
+        })
 
-        props.history.push(path);
 
     }
 
