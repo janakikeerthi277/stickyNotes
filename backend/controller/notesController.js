@@ -50,13 +50,24 @@ const isExists = async (req, res) => {
     res.send(url);
 }
 
+const addUrl = async (req,res) => {
+    const notes = new Notes({'url' : req.params.id});
+    await notes.save().
+    then( () =>{
+        res.status(201).json({message : 'Url created successfully'});
+    }).
+    catch(err =>{
+        console.log(err);
+        res.status(500).json({message : 'Error while creating Url'});
+    })
+}
+
 const addNote = async (req, res) => {
     await Notes.findOneAndUpdate(
         { url: req.params.id },
         { $push: { notes: req.body.notes } },
         {
             new: true,
-            upsert: true
         }
     ).then(() => {
         res.status(201).json({ message: "note created successfully" })
@@ -83,5 +94,6 @@ module.exports = {
     createNewUUID,
     isExists,
     addNote,
-    deleteNote
+    deleteNote,
+    addUrl
 }
