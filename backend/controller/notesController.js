@@ -80,11 +80,28 @@ const createNewUUID = async(req,res) =>{
     }
 }
 
+const deleteUrl = async(req,res) => {
+    await Note.deleteOne({url: req.params.url})
+    .then(
+     () => {
+       res.status(200).json({
+         message: "Link deleted successfully"
+       });
+     }
+   ).catch(
+     (error) => {
+       res.status(400).json({
+         error: error
+       })
+     }
+   )
+ }
 
 module.exports ={
     getAllProducts,
     getProductsById,
     createNewUUID,
     checkValidUUID,
-    generateValidUUID
+    generateValidUUID,
+    deleteUrl
 }
