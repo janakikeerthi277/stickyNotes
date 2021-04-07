@@ -1,6 +1,7 @@
 import './Note.css'
 import {useState,useReducer} from 'react';
 import {v4 as uuid} from 'uuid';
+import axios from 'axios';
 const initialNotesState = {
   lastNoteCreated: null,
   totalNotes:0,
@@ -24,7 +25,10 @@ const notesReducer = (prevState,action) =>{
         totalNotes: prevState.notes.length -1,
         notes: prevState.notes.filter(note => note.id !==action.payload.id)
       };
-
+      axios.patch(`http://localhost:5000/api/notes/deletenote${window.location.pathname}/${action.payload.id}`
+                  ).then(res=>{
+                      console.log(res.data)}
+                  )
       console.log('After delete note', newState);
       return newState;
     }
@@ -51,6 +55,13 @@ const Note = () => {
     setNoteInput('');
     dispatch({type:'ADD_NOTE',payload:newNote});
     // console.log()
+    axios.patch(`http://localhost:5000/api/notes/addnote${window.location.pathname}`,
+                    {
+                        notes : [{uuid: newNote.id,
+                              body: newNote.text}]
+                    }).then(res=>{
+                    console.log(res.data)}
+                      )
     setNoteInput('');
     //console.log(noteInput);
 

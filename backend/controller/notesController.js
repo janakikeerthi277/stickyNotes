@@ -97,11 +97,56 @@ const deleteUrl = async(req,res) => {
    )
  }
 
+ const addNote = async(req,res) => {
+    await Note.findOneAndUpdate(
+        {url: req.params.url} ,
+        {$push : {notes : req.body.notes}},
+        { new : true },
+      ).then(
+        () => {
+          res.status(201).json({
+            message: "New note created successfully"
+          });
+        }
+      ).catch(
+        (error) => {
+          res.status(400).json({
+            error: error
+          })
+        }
+      )
+}
+
+const deleteNote = async(req,res) => {
+    await Note.findOneAndUpdate(
+        { url: req.params.url },
+        { $pull: { notes : { uuid: req.params.uuid} } },
+        { new: true },
+        function(err) {
+            if (err) { console.log(err) }
+        }
+      ).then(
+          () => {
+            res.status(200).json({
+            message: "Note deleted successfully!"
+          });
+        }
+      ).catch(
+          (error) => {
+            res.status(400).json({
+            error: error
+          })
+        }
+      )
+}
+
 module.exports ={
     getAllProducts,
     getProductsById,
     createNewUUID,
     checkValidUUID,
     generateValidUUID,
-    deleteUrl
+    deleteUrl,
+    addNote,
+    deleteNote
 }
