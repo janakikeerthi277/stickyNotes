@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {getAllProducts,getProductsById,createNewUUID,checkValidUUID,generateValidUUID,deleteUrl,addNote,deleteNote} = require('../controller/notesController')
+const {getAllProducts,getProductsById,createNewUUID,checkValidUUID,generateValidUUID,deleteUrl,addNote,deleteNote,findUrl} = require('../controller/notesController')
 
 //@desc get all notes 
 //@route /api/notes
@@ -16,5 +16,6 @@ router.post('/generateuuid',createNewUUID);
 router.delete('/deleteurl/:url',deleteUrl);
 router.patch('/addnote/:url',addNote);
 router.patch('/deletenote/:url/:uuid', deleteNote);
+router.get('/findurl/:url',findUrl);
 
 module.exports = router;

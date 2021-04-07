@@ -1,5 +1,5 @@
 import './Note.css'
-import {useState,useReducer} from 'react';
+import {useState,useReducer,useEffect} from 'react';
 import {v4 as uuid} from 'uuid';
 import axios from 'axios';
 const initialNotesState = {
@@ -39,6 +39,26 @@ const Note = () => {
   
   const [notesState,dispatch] = useReducer(notesReducer,initialNotesState);
   
+  useEffect(() => {
+    getAllNotes();
+    }, []);
+
+  const getAllNotes = () =>{
+    axios.get(`http://localhost:5000/api/notes/findurl${window.location.pathname}`)
+    .then((response) => {
+      const allNotes = response.data.notes;
+      allNotes.map((note,index) => {
+        const addNote = {
+          id : note.uuid,
+          text : note.body,
+          rotate : Math.floor(Math.random() * 20),
+        };
+        dispatch({type:'ADD_NOTE',payload:addNote});
+      })
+      console.log(noteInput)
+    })
+    .catch(error => console.error(`Error: ${error}`));
+  }
   
   const addNote = (event)=>{
     event.preventDefault();

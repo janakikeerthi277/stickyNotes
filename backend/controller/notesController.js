@@ -140,6 +140,11 @@ const deleteNote = async(req,res) => {
       )
 }
 
+const findUrl = async(req,res) => {
+    const url = await Note.findOne({url : req.params.url});
+    res.send(url);
+  }
+
 module.exports ={
     getAllProducts,
     getProductsById,
@@ -148,5 +153,6 @@ module.exports ={
     generateValidUUID,
     deleteUrl,
     addNote,
-    deleteNote
+    deleteNote,
+    findUrl
 }
