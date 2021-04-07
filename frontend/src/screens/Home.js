@@ -8,8 +8,10 @@ import axios from 'axios'
 
 const Home = (props) => {
    // 
-    const [UUID,setUUID] = useState('')
+    const [UUID,setUUID] = useState('');
+    const [valid,setValid] = useState(false);
     const generateUUID = (event)=>{
+        setValid(false);
             event.preventDefault();
             axios.post('http://localhost:5000/api/notes/generateuuid')
             .then(res=>{
@@ -22,12 +24,42 @@ const Home = (props) => {
     }
 
     const redirect = ()=>{
-    console.log(props);
-        const path = `/${UUID}`;
-       
-        props.history.push(path);
+    //console.log(props);
+    // create an instance in the backend
+    if(UUID)
+       {
+            axios.post(`http://localhost:5000/api/notes/generateuuid/${UUID}`)
+            .then(res =>{
+                //const validity = res.data;
+                console.log(res);
+                // if(validity ===false)
+                //     setValid(true);
+            })
+       } 
+    const path = `/${UUID}`;
+    props.history.push(path);
    
     }
+
+    const validUUID = (event)=>{
+        event.preventDefault();
+        if(UUID){
+            axios.get(`http://localhost:5000/api/notes/validuuid/${UUID}`)
+            .then(res =>{
+                const validity = res.data;
+                console.log(res.data);
+                if(validity ===false)
+                    setValid(true);
+            })
+        }
+    }
+
+    const setUUIDMandually = (event)=>{
+        setValid(false);
+        setUUID(event.target.value);
+    }
+
+
 
 
 
@@ -46,10 +78,10 @@ const Home = (props) => {
             {/* <Link to = {}> */}
             <div className="createButton">
                 <button className="btn purple" onClick ={generateUUID}>generate uuid</button>
-                <input onChange = {event =>setUUID(event.target.value)} placeholder="url"/>
+                <input onChange = {setUUIDMandually} placeholder="url"/>
                 
-                <button className="btn green">check</button>
-                <button className="btn gray"onClick={redirect}>Create</button>
+                <button onClick={validUUID} className="btn green">check</button>
+                { valid && <button className="btn gray" onClick={redirect}> Create</button> }
                 <br/>
                 <h2>Your links:</h2>
                 <h2> {`http://localhost/`+UUID}</h2>

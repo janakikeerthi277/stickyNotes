@@ -2,12 +2,31 @@ const notes = [
      {
          url: "links1",
          email : "rath.gmail.com",
-        notes:[ "body 1", "body 2"]
-        
+        notes:[
+              {
+                  uuid: "12345",
+                  body: "body 11"
+                 
+             },
+             {
+                    uuid:"123",
+                    body: "body 222"
+             }
+          ]
      },
     {
          url: "links2",
          email : "rrr.gmail.com",
-        notes:["body 11","body 222"]
+        notes:[
+             {
+                  uuid: "1234",
+                  body: "body 11"
+                 
+             },
+             {
+                    uuid:"12",
+                    body: "body 222"
+             }
+          ]
 }
 ]
