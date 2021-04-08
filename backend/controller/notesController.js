@@ -1,17 +1,19 @@
 const Note = require('../models/Notes');
 const { v4: uuidv4 } = require('uuid');
+const { Mongoose } = require('mongoose');
+const Notes = require('../models/Notes');
 
 
-const getAllProducts = async(req,res) =>{
-    try{
+const getAllProducts = async (req, res) => {
+    try {
         console.log("test");
         const notes = await Note.find({});
         res.json(notes);
 
     }
-    catch(err){
+    catch (err) {
         console.log(err);
-        res.status(500).json({message:"Server Error"})
+        res.status(500).json({ message: "Server Error" })
     }
 }
 
@@ -44,9 +46,9 @@ const getProductsById = async(req,res) =>{
         res.json(note);
 
     }
-    catch(err){
+    catch (err) {
         console.log(err);
-        res.status(500).json({message:"Server Error"})
+        res.status(500).json({ message: "Server Error" })
     }
 }
 
@@ -68,15 +70,15 @@ const generateValidUUID = async(req,res) =>{
 
 
 
-const createNewUUID = async(req,res) =>{
-    try{
+const createNewUUID = async (req, res) => {
+    try {
         const uuid = uuidv4();
         res.json(uuid);
 
     }
-    catch(err){
+    catch (err) {
         console.log(err);
-        res.status(500).json({message:"UUID is not generated"})
+        res.status(500).json({ message: "UUID is not generated" })
     }
 }
 
@@ -145,7 +147,7 @@ const findUrl = async(req,res) => {
     res.send(url);
   }
 
-module.exports ={
+module.exports = {
     getAllProducts,
     getProductsById,
     createNewUUID,

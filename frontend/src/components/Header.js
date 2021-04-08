@@ -4,9 +4,10 @@ import * as emailjs from 'emailjs-com';
 import { useState } from 'react';
 import axios from 'axios';
 
-const Header = () =>{
+const Header = (props) =>{
 
         const [email,setEmail] = useState('')
+        const [query, setQuery] = useState('');
         const handleSubmit = () => {
             
          console.log(email);
@@ -19,6 +20,12 @@ const Header = () =>{
                 console.log('FAILED...', error);
              });
         }
+
+        
+        const handleSearchSubmit = (event) =>{
+            event.preventDefault();
+            props.setSearchTerm(query);     
+          }
 
         const deleteurl = () => {
             axios.delete(`http://localhost:5000/api/notes/deleteurl${window.location.pathname}`)
@@ -40,13 +47,12 @@ const Header = () =>{
             <div className="header_links" style={{display:"flex", justifyContent:"center"}}>
                     <input onChange = {event =>setEmail(event.target.value)} id="email" placeholder="enter your email here"/>
                     <button className="btn-header gray" onClick={handleSubmit}>Send</button>
-                    <input id="search" placeholder="search for a note here"/>
-                    <button className="btn-header gray">Search</button>              
+                    <input id ="search" type='text' value={query} onChange={event => setQuery(event.target.value)} placeholder='search....' ></input>
+                    <button className="btn-header gray" onClick = {handleSearchSubmit} >Search</button>              
             </div>
 
-        </div>
+        </div> 
     )
 }
-
 
 export default Header;

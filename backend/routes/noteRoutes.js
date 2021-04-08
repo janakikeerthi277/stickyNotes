@@ -5,7 +5,7 @@ const {getAllProducts,getProductsById,createNewUUID,checkValidUUID,generateValid
 
 //@desc get all notes 
 //@route /api/notes
-router.get('/',getAllProducts)
+router.get('/', getAllProducts)
 
 
 
@@ -16,6 +16,6 @@ router.post('/generateuuid',createNewUUID);
 router.delete('/deleteurl/:url',deleteUrl);
 router.patch('/addnote/:url',addNote);
 router.patch('/deletenote/:url/:uuid', deleteNote);
-router.get('/findurl/:url',findUrl);
+router.get('/readNotes/:url',findUrl);
 
 module.exports = router;
