@@ -27,10 +27,6 @@ const notesReducer = (prevState, action) => {
       return newState;
     }
     case 'DELETE_NOTE': {
-      axios.delete(`http://localhost:5000/api/notes/deleteNote${window.location.pathname}/${action.payload.id}`)
-        .then(res => {
-          console.log(res.data);
-        })
       const newState = {
         ...prevState,
         totalNotes: prevState.notes.length - 1,
