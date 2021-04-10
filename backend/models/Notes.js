@@ -10,6 +10,9 @@ const notesSchema = new mongoose.Schema({
         type:String
  //       required:true
     },
+    lastChanged:{
+        type:String
+    },
     notes:[{
         uuid:{
             type:String

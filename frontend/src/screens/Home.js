@@ -47,7 +47,7 @@ const Home = (props) => {
                 .then(res => {
                     const validity = res.data;
                     console.log(res.data);
-                    if (validity === false)
+                    if (validity === true)
                         setValid(true);
                 })
         }

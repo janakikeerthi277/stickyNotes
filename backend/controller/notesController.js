@@ -22,7 +22,18 @@ const checkValidUUID = async(req,res) =>{
     try{
         console.log("check Valid UUID");
         const uuid = req.params.id;
-        const notes = await Note.find({uuid});
+         const notes = await Note.find({url:uuid})//,(err,result)=>{
+        //   if(err) {
+        //     console.log("Not present in DB")
+        //     res.json(false);
+
+        //   }
+        //   else {
+        //     console.log("Not valid uuid")
+        //     res.json(true);
+        //   }
+        // });
+   //     console.log(notes);
         console.log(notes);
         if(notes)
             res.json(false);
@@ -58,7 +69,7 @@ const generateValidUUID = async(req,res) =>{
        const url = req.params.id;
        const notes = new Note({url});
        notes.save();
-
+       console.log(notes);
        res.json(notes);
 
     }
