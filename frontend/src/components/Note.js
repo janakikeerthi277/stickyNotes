@@ -12,12 +12,6 @@ const initialFiltered = [] ;
 const notesReducer = (prevState, action) => {
   switch (action.type) {
     case 'ADD_NOTE': {
-      //  axios.patch(`http://localhost:5000/api/notes/addNote${url}`,
-      //  {'uuid' : action.payload.id, 'body' : action.payload.text})
-      // .then(res =>{
-      //     console.log(res.data);
-      //     // setVisibility(res.data == 1) ;
-      // });
       const newState = {
         lastNoteCreated: new Date().toTimeString().slice(0, 8),
         totalNotes: prevState.notes.length + 1,
@@ -48,9 +42,9 @@ const Note = (props) => {
 
   const [filteredNotes, setFilteredNotes] = useState(initialFiltered);
   
-  // useEffect(() => {
-  //   getAllNotes();
-  //   }, []);
+  useEffect(() => {
+    getAllNotes();
+    }, []);
 
   const getAllNotes = () =>{
     axios.get(`http://localhost:5000/api/notes/readNotes${window.location.pathname}`)
