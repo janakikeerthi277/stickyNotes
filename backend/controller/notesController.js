@@ -35,10 +35,11 @@ const checkValidUUID = async(req,res) =>{
         // });
    //     console.log(notes);
         console.log(notes);
-        if(notes)
-            res.json(false);
-        else
+        console.log(notes.length)
+        if(notes.length == 0 )
             res.json(true);
+        else
+            res.json(false);
         
 
     }
