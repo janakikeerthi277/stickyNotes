@@ -1,5 +1,5 @@
 import './Header.css';
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import * as emailjs from 'emailjs-com';
 import { useState } from 'react';
 import axios from 'axios';
@@ -9,7 +9,7 @@ const Header = (props) =>{
         const [email,setEmail] = useState('')
         const [query, setQuery] = useState('');
         const handleSubmit = () => {
-            
+                     
          console.log(email);
          emailjs.send("service_o6nx135","template_7w9gysj",{
             to_email : email,
@@ -27,10 +27,10 @@ const Header = (props) =>{
             props.setSearchTerm(query);     
           }
 
+        let history = useHistory(); 
         const deleteurl = () => {
             axios.delete(`http://localhost:5000/api/notes/deleteurl${window.location.pathname}`)
-            // props.history.push('http://localhost:3000')
-            // props.history.goBack();
+            history.replace('')
         }
   
     return (
