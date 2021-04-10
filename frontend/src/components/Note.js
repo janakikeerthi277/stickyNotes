@@ -48,9 +48,9 @@ const Note = (props) => {
 
   const [filteredNotes, setFilteredNotes] = useState(initialFiltered);
   
-  // useEffect(() => {
-  //   getAllNotes();
-  //   }, []);
+  useEffect(() => {
+    getAllNotes();
+    }, []);
 
   const getAllNotes = () =>{
     axios.get(`http://localhost:5000/api/notes/readNotes${window.location.pathname}`)
