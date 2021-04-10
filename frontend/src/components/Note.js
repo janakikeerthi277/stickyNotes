@@ -71,7 +71,7 @@ const Note = (props) => {
   
   const addNote = (event)=>{
     event.preventDefault();
-
+    
     if (!noteInput) {
       return;
     }
@@ -81,7 +81,9 @@ const Note = (props) => {
       text: noteInput,
       rotate: Math.floor(Math.random() * 20),
     };
-    setNoteInput('');
+    event.target.reset();    
+    //setNoteInput('Sarath');
+   // console.log(noteInput);
     dispatch({ type: 'ADD_NOTE', payload: newNote });
     // console.log()
     axios.patch(`http://localhost:5000/api/notes/addnote${window.location.pathname}`,
@@ -91,8 +93,7 @@ const Note = (props) => {
                     }).then(res=>{
                     console.log(res.data)}
                       )
-    setNoteInput('');
-    //console.log(noteInput);
+    
 
   };
 
