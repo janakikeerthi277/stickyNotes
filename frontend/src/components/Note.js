@@ -53,6 +53,7 @@ const Note = (props) => {
   const getAllNotes = () =>{
     axios.get(`http://localhost:5000/api/notes/readNotes${window.location.pathname}`)
     .then((response) => {
+      if(response.data !== ""){
       const allNotes = response.data.notes;
       allNotes.map((note,index) => {
         const addNote = {
@@ -61,7 +62,7 @@ const Note = (props) => {
           rotate : Math.floor(Math.random() * 20),
         };
         dispatch({type:'ADD_NOTE',payload:addNote});
-      })
+      })}
       console.log(noteInput)
     })
     .catch(error => console.error(`Error: ${error}`));
@@ -107,7 +108,7 @@ const Note = (props) => {
   }
 
   const searchQuery = () =>{
-    if(props.searchTerm != '')
+    if(props.searchTerm !== '')
     {const test = notesState.notes.filter( note => note.text.toUpperCase().includes(props.searchTerm.toUpperCase()));
       setFilteredNotes(test) ;
     }
