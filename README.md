@@ -1,7 +1,4 @@
-# stickyNotes
-Sticky Notes
+# Sticky Notes App
 
-To run the server
-npm run dev
-
+A dashboard for users to add & delete sticky notes.
 
